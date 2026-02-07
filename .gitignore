@@ -1,1 +1,2 @@
-assets/hero-video.mov
+*.mov
+.vercel
