@@ -112,6 +112,41 @@ body {
   color: var(--accent);
 }
 
+/* Animated Logo */
+.logo-icon {
+  animation: logo-pulse 3s ease-in-out infinite;
+}
+
+.logo-icon .rays-blue {
+  animation: rays-rotate 20s linear infinite;
+  transform-origin: center;
+}
+
+.logo-icon .rays-amber {
+  animation: rays-rotate 25s linear infinite reverse;
+  transform-origin: center;
+}
+
+.logo-icon .spiral-center {
+  animation: spiral-pulse 2s ease-in-out infinite;
+  transform-origin: center;
+}
+
+@keyframes rays-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes spiral-pulse {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
+}
+
+@keyframes logo-pulse {
+  0%, 100% { filter: drop-shadow(0 0 0px transparent); }
+  50% { filter: drop-shadow(0 0 8px rgba(245, 158, 11, 0.4)); }
+}
+
 .nav-links {
   display: flex;
   align-items: center;
