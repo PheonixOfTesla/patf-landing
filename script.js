@@ -2,19 +2,67 @@
 
 const API_URL = 'https://patf-api-production.up.railway.app';
 
-// Background Music Controller
+// Background Music Controller - Autoplay on first interaction
 const bgMusic = document.getElementById('bgMusic');
 const audioToggle = document.getElementById('audioToggle');
 
 bgMusic.volume = 0.3;
 
-audioToggle.addEventListener('click', () => {
+// Function to start music
+function startMusic() {
+  if (bgMusic.paused) {
+    bgMusic.play().then(() => {
+      audioToggle.classList.add('playing');
+      // Update icon to show playing state
+      const mutedIcon = audioToggle.querySelector('.icon-muted');
+      const playingIcon = audioToggle.querySelector('.icon-playing');
+      if (mutedIcon) mutedIcon.style.display = 'none';
+      if (playingIcon) playingIcon.style.display = 'block';
+    }).catch(() => {});
+  }
+}
+
+// Try autoplay immediately (works if user has interacted with site before)
+bgMusic.play().then(() => {
+  audioToggle.classList.add('playing');
+  const mutedIcon = audioToggle.querySelector('.icon-muted');
+  const playingIcon = audioToggle.querySelector('.icon-playing');
+  if (mutedIcon) mutedIcon.style.display = 'none';
+  if (playingIcon) playingIcon.style.display = 'block';
+}).catch(() => {
+  // Autoplay blocked - wait for ANY user interaction
+  const events = ['click', 'touchstart', 'scroll', 'keydown', 'mousemove'];
+
+  function playOnInteraction() {
+    startMusic();
+    // Remove all listeners after first interaction
+    events.forEach(event => {
+      document.removeEventListener(event, playOnInteraction, { capture: true });
+    });
+  }
+
+  // Add listeners for all interaction types
+  events.forEach(event => {
+    document.addEventListener(event, playOnInteraction, { capture: true, once: false });
+  });
+});
+
+// Toggle button still works to pause/play
+audioToggle.addEventListener('click', (e) => {
+  e.stopPropagation();
+  const mutedIcon = audioToggle.querySelector('.icon-muted');
+  const playingIcon = audioToggle.querySelector('.icon-playing');
+
   if (bgMusic.paused) {
     bgMusic.play();
     audioToggle.classList.add('playing');
+    if (mutedIcon) mutedIcon.style.display = 'none';
+    if (playingIcon) playingIcon.style.display = 'block';
   } else {
     bgMusic.pause();
     audioToggle.classList.remove('playing');
+    if (mutedIcon) mutedIcon.style.display = 'block';
+    if (playingIcon) playingIcon.style.display = 'none';
   }
 });
 
