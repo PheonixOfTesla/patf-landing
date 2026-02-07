@@ -38,6 +38,23 @@
       <div class="hero-overlay"></div>
     </div>
 
+    <!-- Background Audio - City House Vibe -->
+    <audio id="bgMusic" loop>
+      <source src="https://cdn.pixabay.com/audio/2024/11/29/audio_e2a6f5b3dc.mp3" type="audio/mpeg">
+    </audio>
+
+    <button class="audio-toggle" id="audioToggle" aria-label="Toggle music">
+      <svg class="icon-muted" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+        <line x1="23" y1="9" x2="17" y2="15"/>
+        <line x1="17" y1="9" x2="23" y2="15"/>
+      </svg>
+      <svg class="icon-playing" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;">
+        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+        <path d="M19.07 4.93a10 10 0 010 14.14M15.54 8.46a5 5 0 010 7.07"/>
+      </svg>
+    </button>
+
     <div class="hero-content">
       <div class="hero-badge">Stop Paying for Marketing</div>
 

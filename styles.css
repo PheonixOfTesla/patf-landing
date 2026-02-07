@@ -295,6 +295,46 @@ body {
   animation: bounce 2s infinite;
 }
 
+/* Audio Toggle Button */
+.audio-toggle {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  z-index: 1000;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--gray-800);
+  border: 2px solid var(--gray-700);
+  color: var(--gray-400);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.audio-toggle:hover {
+  background: var(--gray-700);
+  color: var(--amber-400);
+  border-color: var(--amber-500);
+  transform: scale(1.05);
+}
+
+.audio-toggle.playing {
+  background: rgba(245, 158, 11, 0.15);
+  border-color: var(--amber-500);
+  color: var(--amber-400);
+}
+
+.audio-toggle.playing .icon-muted {
+  display: none;
+}
+
+.audio-toggle.playing .icon-playing {
+  display: block !important;
+}
+
 @keyframes bounce {
   0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
   40% { transform: translateX(-50%) translateY(-10px); }

@@ -2,6 +2,22 @@
 
 const API_URL = 'https://patf-api-production.up.railway.app';
 
+// Background Music Controller
+const bgMusic = document.getElementById('bgMusic');
+const audioToggle = document.getElementById('audioToggle');
+
+bgMusic.volume = 0.3;
+
+audioToggle.addEventListener('click', () => {
+  if (bgMusic.paused) {
+    bgMusic.play();
+    audioToggle.classList.add('playing');
+  } else {
+    bgMusic.pause();
+    audioToggle.classList.remove('playing');
+  }
+});
+
 // Signup Form Handler
 document.getElementById('signupForm').addEventListener('submit', async (e) => {
   e.preventDefault();
